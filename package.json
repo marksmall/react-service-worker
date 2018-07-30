@@ -2,17 +2,26 @@
   "name": "pwa-app",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8000",
   "dependencies": {
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-notifications": "^1.4.3",
-    "react-router-dom": "^4.3.1",
+    "react-router-dom": "^4.3.1"
+  },
+  "devDependencies": {
+    "concurrently": "^3.6.1",
+    "express": "^4.16.3",
+    "morgan": "^1.9.0",
+    "nodemon": "^1.18.3",
     "react-scripts": "1.1.4",
     "workbox-build": "^3.4.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently 'yarn proxy-start' 'react-scripts start'",
+    "proxy-start": "nodemon -w proxy ./proxy/proxy.js localhost 8000",
     "build": "react-scripts build",
+    "start-build": "concurrently 'yarn proxy-start' 'serve -s build'",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }

@@ -1,0 +1,4 @@
+{
+  "public": "build",
+  "redirects": [{ "source": "/api", "destination": "http://localhost:8000" }]
+}
